@@ -1,0 +1,3 @@
+pytest
+Flask-RESTful == 0.3.9
+SQLAlchemy == 1.4.32

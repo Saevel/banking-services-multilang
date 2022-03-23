@@ -1,0 +1,13 @@
+spring:
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:file:/data/users-v1
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver

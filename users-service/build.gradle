@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.6.4'
+}
+
+repositories {
+    mavenCentral()
+}
+
+bootJar {
+    mainClass = 'prv.saevel.users.service.UsersServiceApplication'
+}
+
+dependencies {
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-webflux', version: '2.6.4'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.6.4'
+
+    implementation group: 'com.h2database', name: 'h2', version: '2.1.210'
+    implementation group: 'org.flywaydb', name: 'flyway-core', version: '8.5.4'
+
+    testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.6.4'
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.8.2'
+
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.22'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.22'
+
+    // KLUDGE: To make the project interoperable between JAva versions
+    implementation group: 'jakarta.xml.bind', name: 'jakarta.xml.bind-api', version: '2.3.2'
+    implementation group: 'org.glassfish.jaxb', name: 'jaxb-runtime', version: '2.3.2'
+}

@@ -1,0 +1,42 @@
+plugins {
+    id 'scala'
+}
+
+repositories {
+    mavenCentral()
+}
+
+def scala = ["version": ["major": "2.13", "minor": "8"]]
+
+def akka = ["http": ["version": "10.2.9"]]
+
+dependencies {
+    implementation group: 'org.scala-lang', name: 'scala-library', version: "${scala.version.major}.${scala.version.minor}"
+    implementation group: 'com.typesafe.akka', name: "akka-http_${scala.version.major}", version: akka.http.version
+    implementation group: 'com.typesafe.akka', name: "akka-http-spray-json_${scala.version.major}", version: akka.http.version
+    implementation group: 'com.typesafe.akka', name: "akka-stream_${scala.version.major}", version: '2.6.18'
+    implementation group: 'org.typelevel', name: "cats-core_${scala.version.major}", version: '2.7.0'
+    implementation group: 'com.typesafe.akka', name: "akka-stream-kafka_${scala.version.major}", version: '2.1.1'
+
+    implementation group: 'com.spikhalskiy.futurity', name: 'futurity-core', version: '0.2.0'
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.17.2'
+
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.13.2'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.13.2'
+
+    testImplementation group: 'org.scalatest', name: "scalatest_${scala.version.major}", version: '3.2.11'
+    testImplementation group: 'org.scalacheck', name: "scalacheck_${scala.version.major}", version: '1.15.4'
+}
+
+jar {
+    baseName = 'transactions-service'
+    version = '1.0'
+    duplicatesStrategy = DuplicatesStrategy.WARN
+    manifest {
+        attributes "Main-Class": "prv.saevel.transactions.service.Application"
+    }
+
+    from {
+        configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}

@@ -1,0 +1,10 @@
+# Project exclude paths
+/transactions-service/.gradle/
+/transactions-service/build/
+/users-service/.gradle/
+/users-service/build/
+/users-service/build/classes/java/main/
+*.idea
+*.iml
+*/.gradle
+*/build
